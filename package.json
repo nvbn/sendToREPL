@@ -1,0 +1,54 @@
+{
+    "name": "sendtorepl",
+    "displayName": "SendToREPL",
+    "description": "Send selected code or line to REPL in terminal",
+    "version": "0.0.1",
+    "publisher": "nvbn",
+    "engines": {
+        "vscode": "^1.17.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sendToREPL",
+                "title": "Send to REPL"
+            }
+        ],
+        "keybindings": [{
+            "command": "extension.sendToREPL",
+            "key": "ctrl+'",
+            "mac": "cmd+'",
+            "when": "editorTextFocus"
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "sendToREPL configuration",
+            "properties": {
+                "sendToREPL.singleLineLanguages": {
+                    "type": "string",
+                    "default": "perl",
+                    "description": "Space separated languages require joining code in single line"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.5.2",
+        "vscode": "^1.1.5",
+        "mocha": "^3.5.0",
+        "eslint": "^4.6.1",
+        "@types/node": "^7.0.0",
+        "@types/mocha": "^2.2.42"
+    }
+}

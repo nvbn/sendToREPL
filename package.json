@@ -2,7 +2,7 @@
     "name": "sendtorepl",
     "displayName": "SendToREPL",
     "description": "Send selected code or line to REPL in terminal",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "nvbn",
     "engines": {
         "vscode": "^1.17.0"

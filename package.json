@@ -2,7 +2,7 @@
     "name": "sendtorepl",
     "displayName": "SendToREPL",
     "description": "Send selected code or line to REPL in terminal",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "nvbn",
     "icon": "icon.png",
     "engines": {

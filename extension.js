@@ -3,8 +3,14 @@ let terminal;
 
 function activate(context) {
     const config = vscode.workspace.getConfiguration('sendToREPL');
-    terminal = vscode.window.createTerminal('SendToREPL terminal');
-    terminal.show();
+    const terminalName = 'SendToREPL terminal';
+
+    const createTerminal = () => {
+        terminal = vscode.window.createTerminal(terminalName);
+        terminal.show();
+    };
+
+    createTerminal();
 
     const getCode = (textEditor) => {
         if (!textEditor.selection) {
@@ -29,7 +35,7 @@ function activate(context) {
         }
     };
 
-    let disposable = vscode.commands.registerTextEditorCommand('extension.sendToREPL', (textEditor) => {
+    const command = vscode.commands.registerTextEditorCommand('extension.sendToREPL', (textEditor) => {
         let code = getCode(textEditor);
         
         if (code) {
@@ -38,7 +44,13 @@ function activate(context) {
         }
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(command);
+
+    vscode.window.onDidCloseTerminal((event) => {
+        if (terminal && event.name === terminalName) {
+            createTerminal();
+        }
+    });
 }
 
 exports.activate = activate;
